@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhuvan Puttaswamy — Mechatronics Engineer</title>
+  <style>
+    :root {
+      --accent: #e05c2a;
+      --accent-light: #fdf0ea;
+      --dark: #1a1a2e;
+      --mid: #2d2d44;
+      --text: #2c2c2c;
+      --muted: #666;
+      --border: #e0e0e0;
+      --bg: #fafafa;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 56px;
+    }
+    nav .logo {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    nav .logo span { color: var(--accent); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--mid) 100%);
+      color: #fff;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: #aab4c8;
+      font-weight: 400;
+    }
+    .hero .tagline {
+      max-width: 640px;
+      margin: 1.5rem auto 0;
+      font-size: 0.95rem;
+      color: #c5cdd9;
+      line-height: 1.7;
+    }
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact-bar a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #e0e6f0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.45rem 1rem;
+      border-radius: 99px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .contact-bar a:hover {
+      background: rgba(224,92,42,0.2);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .contact-bar a svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .section-label h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 780px;
+      line-height: 1.8;
+    }
+    .about-text strong { color: var(--text); }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .skill-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border-color: var(--accent);
+    }
+    .skill-card h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .skill-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* PROJECTS */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .project-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .project-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: right;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+    .tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 99px;
+    }
+    .project-card ul {
+      padding-left: 1.2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .project-card ul li { margin-bottom: 0.25rem; }
+
+    /* EXPERIENCE */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.4rem;
+    }
+    .exp-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .exp-header .loc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .exp-card p {
+      font-size: 0.87rem;
+      color: var(--muted);
+    }
+
+    /* EDUCATION */
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .edu-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .edu-header span {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .edu-card .inst {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .core-areas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .core-tag {
+      background: #f0f0f5;
+      color: var(--mid);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 99px;
+    }
+
+    /* LANGUAGES */
+    .lang-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .lang-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      min-width: 140px;
+    }
+    .lang-card .lang-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .lang-card .lang-level {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+    .lang-card .lang-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #888;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .project-header { flex-direction: column; }
+      .project-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">BP<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Bhuvan <span>Puttaswamy</span></h1>
+  <p class="subtitle">Mechatronics Engineering Student · THWS Würzburg-Schweinfurt</p>
+  <p class="tagline">
+    Strong foundation in embedded systems, hardware-software integration, and automotive-relevant electronics.
+    Experienced in AI deployment, control systems, and cross-functional engineering.
+    Willing to relocate.
+  </p>
+  <div class="contact-bar">
+    <a href="mailto:bhuvanputtaswamy3@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      bhuvanputtaswamy3@gmail.com
+    </a>
+    <a href="tel:+4917774308702">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.58 2.81.71A2 2 0 0 1 22 16.92z"/></svg>
+      +49 177 7430870
+    </a>
+    <a href="https://linkedin.com/in/bhuvanputtaswamy" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/bhuvanputtaswamy
+    </a>
+    <a href="https://github.com/bhuvanp5566" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.09.68-.22.68-.49v-1.71c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.52 1.05 1.52 1.05.89 1.56 2.33 1.11 2.9.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.81c0 .27.18.59.69.49C19.13 20.65 22 16.8 22 12.26 22 6.58 17.52 2 12 2z"/></svg>
+      github.com/bhuvanp5566
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Schweinfurt, Germany
+    </a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label"><h2>About</h2></div>
+    <p class="about-text reveal">
+      I'm a <strong>Mechatronics Engineering student</strong> at THWS, currently in my 8th semester, with hands-on experience spanning
+      <strong>embedded firmware</strong>, <strong>AI/edge computing</strong>, <strong>control systems</strong>, and <strong>data pipelines</strong>.
+      I've built and shipped real systems — from an offline voice AI robot (CLARA) to an LLM inference stack running entirely on a Raspberry Pi 5 —
+      and I document everything to engineering standards.
+      I thrive in cross-functional teams, communicate clearly in both English (C2) and German (B1), and am
+      <strong>open to relocation</strong> anywhere in Germany or the EU.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label"><h2>Technical Skills</h2></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>E/E &amp; Embedded Systems</h3>
+        <p>Microcontroller programming, interrupt-driven firmware, hardware-software integration, sensor &amp; actuator interfacing, CAN/Ethernet awareness</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Automotive &amp; SDV</h3>
+        <p>Automotive E/E architecture fundamentals, connected mobility, ECU concepts, zonal architectures, Software-Defined Vehicle trends</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>AI &amp; Edge Computing</h3>
+        <p>Edge AI deployment, LLM inference (Ollama), model quantization (Q4), REST API integration, on-device benchmarking</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Data Analysis</h3>
+        <p>Pandas, NumPy, Matplotlib; CSV/structured data processing, statistical anomaly detection (3σ), missing-value interpolation</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Control &amp; Simulation</h3>
+        <p>PID control, signal processing, MATLAB/Simulink, actuator modelling, real-time sensor data acquisition</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Programming</h3>
+        <p>Python, C++, Java — production scripts, data pipelines, firmware, REST APIs, Flask/PostgreSQL backends</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Tools &amp; DevOps</h3>
+        <p>Git, Linux/Ubuntu, Docker, Ollama, Open WebUI, MS Office (PowerPoint, Excel, Word)</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Research &amp; Documentation</h3>
+        <p>Structured technical research, benchmarking, concept descriptions, comparison tables, management-ready reports, slide decks</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>CAD</h3>
+        <p>SolidWorks, PTC Creo — mechanical design and component modelling</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label"><h2>Projects</h2></div>
+    <div class="projects-list">
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <h3>CLARA — AI Voice Assistant Robot</h3>
+          <div class="project-meta">Python · Vosk · Piper · LLM<br>2025 – 2026</div>
+        </div>
+        <div class="tags">
+          <span class="tag">AI</span><span class="tag">Robotics</span><span class="tag">Python</span><span class="tag">Offline STT/TTS</span>
+        </div>
+        <ul>
+          <li>Architected a modular voice-interaction pipeline for a humanoid lab-assist robot — offline end-to-end (no cloud dependency).</li>
+          <li>Built offline Speech-to-Text with Vosk for intent detection and structured command extraction.</li>
+          <li>Integrated Piper TTS for conversational response generation; event-driven wake-word activation logic.</li>
+          <li>Installed and validated hardware (microphones, speakers, electronics); conducted system-level integration with vision and mechanical teams.</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <h3>Local AI Chatbot on Raspberry Pi 5</h3>
+          <div class="project-meta">Ollama · Docker · Linux · REST API<br>2026</div>
+        </div>
+        <div class="tags">
+          <span class="tag">Edge AI</span><span class="tag">LLM</span><span class="tag">Docker</span><span class="tag">Benchmarking</span>
+        </div>
+        <ul>
+          <li>Deployed a fully offline LLM inference stack on a Raspberry Pi 5 (8 GB) using Ollama + Open WebUI in Docker.</li>
+          <li>Benchmarked four quantized models (gemma3:1b, deepseek-r1:1.5b, qwen2.5:1.5b, phi3.5) across tokens/sec, RAM, and CPU temperature.</li>
+          <li>Queried the Ollama REST API via curl from remote devices, demonstrating the Pi as a networked local AI server.</li>
+          <li>Tuned generation parameters (temperature, Top-P, Top-K, context length) and documented variance effects.</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <h3>L-PBF Process Monitoring Pipeline</h3>
+          <div class="project-meta">Python · Pandas · NumPy · Matplotlib<br>2026</div>
+        </div>
+        <div class="tags">
+          <span class="tag">Data Analysis</span><span class="tag">Python</span><span class="tag">Manufacturing</span>
+        </div>
+        <ul>
+          <li>End-to-end Python pipeline simulating, cleaning, and analysing layer-by-layer sensor data from Laser Powder Bed Fusion metal 3D printing.</li>
+          <li>Applied statistical anomaly detection (3σ) on melt pool temperature and laser power signals; linear interpolation for missing values.</li>
+          <li>Designed a three-panel Matplotlib monitoring dashboard flagging temperature spikes and laser dropouts across 200 build layers.</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <h3>Analog &amp; Embedded Electronics Lab</h3>
+          <div class="project-meta">C · MSP430 · Oscilloscope · Breadboard<br>2024</div>
+        </div>
+        <div class="tags">
+          <span class="tag">Embedded</span><span class="tag">C</span><span class="tag">Analog</span><span class="tag">MSP430</span>
+        </div>
+        <ul>
+          <li>Built and characterised op-amp circuits: inverting amplifiers, Schmitt triggers, impedance converters, PWM motor controllers.</li>
+          <li>Used a Keysight DSO-X 2024A oscilloscope and digital multimeters for signal analysis across all configurations.</li>
+          <li>Programmed an MSP430F449 at register level in C (IAR Embedded Workbench): UART baud rate registers, ISRs, low-power modes (LPM0–LPM3).</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <h3>Control Algorithms &amp; Embedded Firmware Development</h3>
+          <div class="project-meta">MATLAB · Simulink · Microcontrollers</div>
+        </div>
+        <div class="tags">
+          <span class="tag">Control Systems</span><span class="tag">MATLAB</span><span class="tag">Firmware</span>
+        </div>
+        <ul>
+          <li>Developed interrupt-driven firmware for real-time motor control and sensor data acquisition on microcontrollers.</li>
+          <li>Modelled actuator and system dynamics in MATLAB/Simulink; produced structured analysis documentation.</li>
+          <li>Evaluated control approaches for functionality and performance — benchmarking mindset applicable to E/E innovation roles.</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <h3>Full-Stack Task Management Application</h3>
+          <div class="project-meta">Flask · PostgreSQL · Docker<br>2025</div>
+        </div>
+        <div class="tags">
+          <span class="tag">Flask</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Backend</span>
+        </div>
+        <ul>
+          <li>Designed a structured backend with modular components and clear interface definitions — architectural thinking applicable to E/E concept work.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label"><h2>Industrial Experience</h2></div>
+    <div class="exp-list">
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <h3>Student Intern · KIET Technologies</h3>
+          <span class="loc">Bengaluru, India</span>
+        </div>
+        <p>Supported semi-automated mechanical systems and structured testing workflows; hands-on exposure to production-floor processes.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <h3>Student Intern · ENMAZ Engineering</h3>
+          <span class="loc">Bengaluru, India</span>
+        </div>
+        <p>Worked with embedded systems and industrial automation components in a real production environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label"><h2>Education</h2></div>
+    <div class="edu-card reveal">
+      <div class="edu-header">
+        <h3>Bachelor of Engineering — Mechatronics (IMC English track)</h3>
+        <span>Oct 2022 – Present</span>
+      </div>
+      <p class="inst">Technische Hochschule Würzburg-Schweinfurt (THWS), Schweinfurt, Germany</p>
+      <div class="core-areas">
+        <span class="core-tag">Programming</span>
+        <span class="core-tag">Embedded Systems</span>
+        <span class="core-tag">Automotive &amp; Connected Mobility</span>
+        <span class="core-tag">Electronics</span>
+        <span class="core-tag">Control Systems</span>
+        <span class="core-tag">Human-Machine Interaction</span>
+        <span class="core-tag">Industry 4.0</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <div class="section-label" style="margin-bottom: 1rem;"><h2 style="font-size:1rem; font-weight:600; color:var(--muted);">Languages</h2></div>
+      <div class="lang-grid reveal">
+        <div class="lang-card">
+          <div class="lang-name">English</div>
+          <div class="lang-level">C2</div>
+          <div class="lang-desc">Fluent</div>
+        </div>
+        <div class="lang-card">
+          <div class="lang-name">German</div>
+          <div class="lang-level">B1</div>
+          <div class="lang-desc">Working knowledge</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Bhuvan Puttaswamy &mdash; Mechatronics Engineering Student, THWS Germany</p>
+  <p style="margin-top: 0.4rem;">
+    <a href="mailto:bhuvanputtaswamy3@gmail.com">bhuvanputtaswamy3@gmail.com</a> &nbsp;|&nbsp;
+    <a href="https://linkedin.com/in/bhuvanputtaswamy" target="_blank">LinkedIn</a> &nbsp;|&nbsp;
+    <a href="https://github.com/bhuvanp5566" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
